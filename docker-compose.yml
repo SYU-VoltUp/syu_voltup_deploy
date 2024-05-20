@@ -1,14 +1,7 @@
 version: '3'
 services:
-  frontend:
-    image: ${DOCKER_USERNAME}/syu-voltup-frontend:latest
-    container_name: syu-voltup-frontend
-    ports:
-      - "3000:80"
-    restart: unless-stopped
-
   backend:
-    image: ${DOCKER_USERNAME}/syu-voltup-backend:latest
+    image: ${DOCKER_USERNAME}/syu-voltup:backend
     container_name: syu-voltup-backend
     ports:
       - "8080:8080"
@@ -21,6 +14,5 @@ services:
     ports:
       - "80:80"
     depends_on:
-      - frontend
       - backend
     restart: unless-stopped
