@@ -1,4 +1,18 @@
-FROM ubuntu:latest
-LABEL authors="migus"
+version: '3'
+services:
+  backend:
+    image: ${DOCKER_USERNAME}/syu-voltup:backend
+    container_name: syu-voltup-backend
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
 
-ENTRYPOINT ["top", "-b"]
+  nginx:
+    build:
+      context: ./nginx
+    container_name: nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
