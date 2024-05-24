@@ -1,6 +1,6 @@
 FROM nginx:1.19.0
 
-COPY ./nginx.conf /etc/nginx/nginx.conf
+COPY nginx-nossl.conf /etc/nginx/nginx.conf
 
 COPY --from=migusdn/syu-voltup:frontend /app/build /usr/share/nginx/html
 
